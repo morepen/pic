@@ -1,0 +1,36 @@
+.content_all{position:fixed;top:0;left:0;width:100%;height:100%;
+    background-image: url(../../images/login/index_login.png);
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='../../images/login/index_login.png',
+            sizingMethod='scale');
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='../../images/login/index_login.png',
+            sizingMethod='scale');}
+.content{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:95%;height:90%;overflow:hidden}
+.inputDiv{position:absolute;top:50%;left:50%;width:344px;padding:0 34px;height:258px;margin-left:-206px;margin-top:-129px;background:url(../../images/login/background-login.png);background-size:412px 258px}
+.center{margin:0 auto;text-align:center}
+.center span{font-family:SimHei,tahoma,arial,Microsoft YaHei,Hiragino Sans GB,\\u5b8b\u4f53,sans-serif;font-size:24px;display:inline-block}
+.center div{height:3px;width:85px;margin:5px auto;background-color:#ff3200}
+.inputDiv li{width:100%;height:40px;line-height:40px}
+.inputDiv .inputtext{width:284px;height:35px;line-height:35px;box-sizing:border-box;border: 0;margin-left:16px;padding-left:10px;}
+.inputDiv li input[type=checkbox]{display:inline-block;width:20px;height:20px;vertical-align:center;margin-top:12px;margin-right:5px;}
+.styButon{display:inline-block;width:78px!important;height:36px;border:none;border-radius:3px;background-color:#ff3200;color:#fff;text-align:center;font-size:18px;cursor:pointer;}
+.inputDiv .pen_label{display:inline-block;color:#fff;line-height:35px;height:35px;font:16px/150% tahoma,arial,Microsoft YaHei,Hiragino Sans GB,\\u5b8b\u4f53,sans-serif;-webkit-font-smoothing:antialiased}
+.inputDiv li.peninput{padding-left:10px;border:1px solid #ddd;line-height:42px}
+.tit,.titpwd{position:relative;top:10px;right:255px;display:inline-block;margin:0;width:23px;height:23px}
+.top{margin:50px auto 0;width:60pc;min-width:900px;background-color:#fff}
+.top .topcontent .topleft{float:left;padding-top:40px}
+.top .topcontent .topright{float:right;padding-top:40px;font-size:18px}
+.top .topcontent .topright span{color:#e8340c}
+.conright{position:relative;float:right;margin:75pt auto;width:340px;height:200px}
+.pen_login{margin:350px auto 0;width:360px}
+.pen_left{position:absolute;top:15px;left:15px}
+.pen_bottom{position:absolute;bottom:22px;right:25px}
+.plogin_btn{overflow:hidden}
+.txtTip{position:absolute;right:166px;top:334px;display:block;height:30px;line-height:30px;font-size:12px;padding-left:10px;-khtml-opacity:.6;-moz-opacity:.6;filter:alpha(opacity=60);filter:"alpha(opacity=60)";opacity:.6;filter:alpha(opacity=60);text-align:left}
+.txtTip1{position:absolute;right:177px;top:393px;display:block;height:30px;line-height:30px;font-size:12px;padding-left:10px;-khtml-opacity:.6;-moz-opacity:.6;filter:alpha(opacity=60);filter:"alpha(opacity=60)";opacity:.6;filter:alpha(opacity=60);text-align:left}
+#ttLogonForm{height:100%}
+.cotent-right{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:100%;height:100%;opacity:.32;filter:alpha(opacity=32);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=32)";filter:alpha(Opacity=32)}
+

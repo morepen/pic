@@ -1,0 +1,23 @@
+/*
+* 需要展示可回退导航的就引用这个样式
+*/
+@media only screen and ( max-width: 800px ) {
+    #header {
+        border: none;
+    }
+    .hc_login{
+        position:absolute;
+        top:20px;
+        left:10px;
+    }
+    #header .head-main {
+        display: none;
+    }
+    #header .head-phone {
+        display: block;
+    }
+
+    #main {
+        margin-top: 60px;
+    }
+}
