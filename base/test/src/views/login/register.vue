@@ -42,8 +42,10 @@
 </template>
 
 <script>
+    import md5 from 'js-md5';
+
     import api from '../../fetch/api';
-    var usernameReg=/^[\u4e00-\u9fa5A-Za-z]{2,6}$/;
+    var usernameReg=/^[\w\u4e00-\u9fa5]{2,6}$/g;
     var password=/^\w{6,16}$/;
     var emailReg= /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 	export default{
@@ -53,14 +55,13 @@
 				username:"",
 				password:"",
 				email:""
-
 			}
 		},
 		methods: {
 		  register:function(){
 		         var data={
 		           username:this.username,
-				   password:this.password,
+				   password:md5(this.password),
 				   email:this.email
 		          }
                   if(!usernameReg.test(this.username)){
@@ -78,7 +79,10 @@
 		          var that=this;
 		          api.Regist(data).then(function (response) {
 		            if(response.code=="200"){
-                       that.$router.push({ path: 'publish' }) 
+                       setTimeout(function(){
+                            const url = "/";
+                            _this.$router.push({"path":url});
+                        },1000)
 		            }
 				
 				  })
