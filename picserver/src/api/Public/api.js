@@ -145,7 +145,7 @@ exports.GetApi = function (_req, _res, _callback) {
                 to: email, // 接受者,可以同时发送多个,以逗号隔开
                 subject: '邮件', // 标题
                 //text: 'Hello world', // 文本
-                html: '<h2>尊敬'+username'，您已注册本站成功</h2><div>请点击如下链接激活:'+url+'</div>',
+                html: '<h2>尊敬'+username+'，您已注册本站成功</h2><div>请点击如下链接激活:'+url+'</div>',
             };
             transporter.sendMail(mailOptions, function (err, info) {
                 if (err) {
