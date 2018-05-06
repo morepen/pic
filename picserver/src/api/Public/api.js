@@ -170,9 +170,10 @@ exports.GetApi = function (_req, _res, _callback) {
             });
         },
         PicUpload:function (){
+            console.log("PicUpload");
             var Me, userid,title,imgData;
-            userid=16;
             Me = this;
+            userid=Me.getParam('userid');
             title = Me.getParam('title');
             imgData = Me.getParam('imgData');
             var picArr=[];

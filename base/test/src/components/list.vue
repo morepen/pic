@@ -100,7 +100,7 @@ export default{
         data(){
             return{
                 isReply:false,
-                picpath:'http://116.196.81.196:5091/upload/',
+                picpath:this.$store.state.uploadpath,
                 piclist:[],
                 imglist:[],
                 state:'1',

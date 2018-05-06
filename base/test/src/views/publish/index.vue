@@ -1,5 +1,6 @@
 <template>
   <div class="upload" ref="uploader">
+    <div v-show="true">1{{$store.state.userinfo.id}}</div>
     <div class="content">
         <div class="up-head">
             <i class="iconfont">&#xe616;</i>发布新闻图片
@@ -98,10 +99,10 @@
         },
         methods:{
           upload(){
-            
             var imgData=this.$store.state.files;
+          
             var data={
-                userid:this.this.$store.state.userinfo.id,
+                userid:this.$store.state.userinfo.id,
                 title:this.title,
                 content:this.content,
                 imgData:imgData

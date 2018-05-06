@@ -14,4 +14,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-Vue.prototype.$router=router
+//Vue.prototype.$router=router;

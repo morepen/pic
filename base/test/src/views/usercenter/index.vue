@@ -1,7 +1,7 @@
 <template>
 <div class="center">
     <a class="item head clearfix" href="/user/edit">
-        <img class="avatar" src="" alt="" width="55" height="55">
+        <img class="avatar" :src="attachImageUrl(userinfo.userpic)"  width="55" height="55">
         <p class="info">
             <span class="ell">{{userinfo.username}}</span>
             <span class="ell desc"></span>
@@ -42,7 +42,15 @@ export default{
             }
         },
         methods: {
-          register:function(){}
+          register:function(){},
+          attachImageUrl(srcUrl) {
+              var that=this;
+              
+              if (srcUrl !== undefined) {
+                 return this.$store.state.userpicUrl+srcUrl;
+                 alert(this.$store.state.userpicUrl+srcUrl);
+               }
+            },
         }
     }
 
