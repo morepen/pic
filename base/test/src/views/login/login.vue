@@ -32,6 +32,7 @@
 	</div>
 </template>
 <script>
+    import md5 from 'js-md5';
     import api from '../../fetch/api';
     export default{
         data(){
@@ -47,14 +48,17 @@
           Login:function(){
                  var data={
                    username:this.username,
-                   password:this.password
+                   password:md5(this.password)
                   }
              
                   var that=this;
                   api.Login(data).then(function (response) {
-                    alert(JSON.stringify(response))
+
                     if(response.code=="200"){
-                      that.$router.push({ path: 'publish' }) 
+                      debugger;
+                      that.$store.state.userinfo=response.data[0];
+                    
+                      that.$router.push({ path: 'usercenter' }) 
                     }
                 
                   })

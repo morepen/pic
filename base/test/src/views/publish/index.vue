@@ -19,7 +19,7 @@
                 <p>上传图片</p>
                 <div class="upload_warp_img_div"> <uploader></uploader></div>
             </div>
-            <div class="upload-bnt" v-on:click="upload()">上传</div>
+            <div class="upload-bnt" v-on:click="upload()">发布</div>
            
         </div>
 
@@ -101,6 +101,7 @@
             
             var imgData=this.$store.state.files;
             var data={
+                userid:this.this.$store.state.userinfo.id,
                 title:this.title,
                 content:this.content,
                 imgData:imgData

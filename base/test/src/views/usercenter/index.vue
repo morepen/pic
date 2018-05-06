@@ -1,10 +1,10 @@
 <template>
 <div class="center">
     <a class="item head clearfix" href="/user/edit">
-        <img class="avatar" src="<%= user.info.avatar %>" alt="<%= user.info.loginname %>" width="55" height="55">
+        <img class="avatar" src="" alt="" width="55" height="55">
         <p class="info">
-            <span class="ell"><%= user.info.loginname %></span>
-            <span class="ell desc"><%= user.info.description %></span>
+            <span class="ell">{{userinfo.username}}</span>
+            <span class="ell desc"></span>
         </p>
         <p class="iconfont">&#xe625;</p>
     </a>
@@ -35,4 +35,16 @@
 
 </style>
 <script>
+export default{
+        data(){
+            return{
+                userinfo:this.$store.state.userinfo
+            }
+        },
+        methods: {
+          register:function(){}
+        }
+    }
+
+
 </script>

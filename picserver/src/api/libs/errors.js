@@ -23,7 +23,7 @@
         },
         10005: {
             name: 'No Access',
-            message: '该帐号已被系统管理员停用'
+            message: '该帐号未激活'
         },
         10006: {
             name: 'Username Exist',
@@ -64,6 +64,22 @@
         10012: {
             name: 'miss params',
             message: '文件上传失败'
+        },
+        10013: {
+            name: 'miss params',
+            message: '该用户已注册'
+        },
+        10014: {
+            name: 'miss params',
+            message: '该邮箱已注册'
+        },
+        10015: {
+            name: 'miss params',
+            message: '邮件发送失败'
+        },
+        10016: {
+            name: 'miss params',
+            message: '激活码错误'
         }
     };
 

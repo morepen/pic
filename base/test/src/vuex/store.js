@@ -5,7 +5,8 @@ Vue.use(Vuex);
 export const store= new Vuex.Store({
   state:{
     goodsList:localStorage["goodsList"]?JSON.parse(localStorage["goodsList"]): [],
-    files:[]
+    files:[],
+    userinfo:[]
   },
   getters:{
     sum:state=>{

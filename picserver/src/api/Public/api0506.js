@@ -7,9 +7,7 @@ var fs = require("fs");
 var path = require('path');
 //var request = require('request');
 var nodemailer = require('nodemailer');
-var md5=require("md5") 
 var crypto = require('crypto');
-
 function md5(data) {
     var buf = new Buffer(data);
     var str = buf.toString("binary");
@@ -42,6 +40,7 @@ exports.GetApi = function (_req, _res, _callback) {
             email=Me.getParam('email');
             var time=new Date().getTime();
             var key=md5(username+time+settings.activeKey);
+            console.log(key);
             var ep = new EventProxy();
             var sqlCmd = 'select * from users  where username=?';
             var sqlParams = [username];
@@ -73,12 +72,11 @@ exports.GetApi = function (_req, _res, _callback) {
                });
             })
             ep.once('insert1', function () {
-                var sqlCmd2 = "insert into users (username,password,email,activecode) values (?,?,?,?);";
+                var sqlCmd2 = "insert into users (username,password,email) values (?,?,?);";
                 var sqlParams2=[];
                 sqlParams2[sqlParams2.length] = username;
                 sqlParams2[sqlParams2.length] = password;
                 sqlParams2[sqlParams2.length] =email;
-                sqlParams2[sqlParams2.length] =key;
                 Me.db.query(sqlCmd2, sqlParams2, function (_err, _results) {
                   console.log(_err);
                     if (!_err) {
@@ -91,7 +89,7 @@ exports.GetApi = function (_req, _res, _callback) {
             })
 
             ep.once('sendemail',function(){                
-                var activeUrl=settings.activeUrl+"?usernmae="+username+"&key="+key;
+                var activeUrl=settings.activeUrl+"?username="+username+"&key"+key;
                 Me.sendEmail(email,username,activeUrl,function(err,result){
                     if(err){
                        return cbError(10014, Me.cb);
@@ -102,35 +100,29 @@ exports.GetApi = function (_req, _res, _callback) {
             })
         },
         CheckActive:function(){
-            console.log("CheckActive");
             var Me, username,activecode;
             Me = this;
             username = Me.getParam('username');
-            activecode = Me.getParam('key'); 
-            console.log(activecode);
+            activeCode = Me.getParam('activeCode'); 
             var ep = new EventProxy();
-            var sqlCmd = 'select * from users where username=? and activecode=?';
+            var sqlCmd = 'select * from users  where username=? and key=?';
             var sqlParams=[];
-                sqlParams[sqlParams.length]=username;
-                sqlParams[sqlParams.length]=activecode;
-            console.log(sqlCmd+sqlParams);
+            sqlParams[sqlParams.length] = username;
+                sqlParams[sqlParams.length] = activecode;
             Me.db.query(sqlCmd, sqlParams, function (_err, _results) {
-                console.log(_results);
                 if (!_err) {
                     if (_results.length > 0) {
-                       ep.emit('update1');
-                    }else{
-                       return cbError(10016, Me.cb);  
+                        return cbError(10016, Me.cb);
                     }
-                   
+                    ep.emit('update1');
                 }
                 else {
                     return cbError(10001, Me.cb);
                 }
             });
             ep.once('update1', function () {
-                var updateCmd = 'update users set activetype=1 where username=? and activecode=?';
-                Me.db.query(updateCmd,sqlParams, function (_err, _results) {
+                var updateCmd = 'update users set keytype=1';
+                Me.db.query(updateCmd, [], function (_err, _results) {
                     if (!_err) {
                         Me.cb(200, _err, username);                         
                     }else {
@@ -144,21 +136,17 @@ exports.GetApi = function (_req, _res, _callback) {
             Me = this;
             username = Me.getParam('username');
             password = Me.getParam('password');
-            // var sqlCmd = "select * from users where (username = ? or email= ?) and password = ?";
-            // Me.db.query(sqlCmd, [username,username,password], function (_err, _results) {
-            var sqlCmd = "select * from users where username = ? and password = ?";
-            var sqlParams=[];
-                sqlParams[sqlParams.length]=username;
-                sqlParams[sqlParams.length]=password;  
-                Me.db.query(sqlCmd,sqlParams, function (_err, _results) {
+            var sqlCmd = "select * from users where (username = ? or email= ?) and password = ?";
+            Me.db.query(sqlCmd, [username,username,password], function (_err, _results) {
+                console.log(_err);
                 if (!_err) {
                     if (_results.length > 0) {
-                        if (_results[0].activetype == 0){
+                        if (_results[0].status == 0){
                             return cbError(10005, Me.cb);
                         }
-                        // _results[0].password = '';
-                        // Me.req.session.UserInfo = _results[0];
-                         Me.cb(200, _err, _results);
+                        _results[0].password = '';
+                        Me.req.session.UserInfo = _results[0];
+                        Me.cb(200, _err, _results);
                     } 
                     else {
                         return cbError(10000, Me.cb);
@@ -235,7 +223,7 @@ exports.GetApi = function (_req, _res, _callback) {
             transporter.sendMail(mailOptions, function (err, info) {
                 if (err) {
                     //console.log(err);
-                    console.log(email+"该邮箱未发送成功");
+                    console.log(qq+"该邮箱未发送成功");
                     return cb(true,null);
                 }
                 console.log(email+"该邮箱发送成功");

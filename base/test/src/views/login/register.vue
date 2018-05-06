@@ -64,7 +64,7 @@
 				   password:md5(this.password),
 				   email:this.email
 		          }
-                  if(!usernameReg.test(this.username)){
+                  if(!this.username){
                        alert('请输入2－6位中英文');
                        return;
                   }
