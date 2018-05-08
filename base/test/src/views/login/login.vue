@@ -57,7 +57,7 @@
                     if(response.code=="200"){
                       debugger;
                       that.$store.state.userinfo=response.data[0];
-                    
+                      localStorage.userinfo = JSON.stringify(response.data[0]);
                       that.$router.push({ path: 'usercenter' }) 
                     }
                 
