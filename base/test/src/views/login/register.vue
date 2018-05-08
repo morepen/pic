@@ -79,6 +79,7 @@
 		          var that=this;
 		          api.Regist(data).then(function (response) {
 		            if(response.code=="200"){
+                       debugger;
                        setTimeout(function(){
                             const url = "/";
                             _this.$router.push({"path":url});

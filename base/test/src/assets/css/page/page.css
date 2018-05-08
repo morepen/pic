@@ -22,16 +22,15 @@
 
 .page .post-item .post-head .avatar {
     float: left;
-    border-radius: 50%;
     overflow: hidden;
 }
 
 .page .post-item .post-head .avatar .name {
-    display: none;
+    display:inline-block;
 }
 
 .page .post-item .post-head .avatar img{
-    display: block;
+   display:inline-block;
 }
 
 .page .post-item .post-head .user-info {

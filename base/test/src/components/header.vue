@@ -19,6 +19,7 @@
                 <li  ><a href="/month">月榜</a></li>
                 <router-link to="pass"><li class="hid post"><a href="/post/pass">审贴</a></li> </router-link>
                 <router-link to="publish"><li class="hid post-up"><a class="post-up" href="/post/up">投稿</a></li></router-link>
+                <router-link to="usercenter"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
                 <li class="user">
                     
                     <a href="/user/login">

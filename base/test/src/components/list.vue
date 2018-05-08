@@ -5,16 +5,16 @@
     <div></div>
     <div class="post-head clearfix">
         <a class="avatar clearfix" href="/people/哈哈小姐" target="_blank">
-            <img src="/avatar/default/7.jpg" alt="" width="50" height="50">
-            <span class="name">哈哈小姐</span>
+            <img :src="userImageUrl(item.userpic)" alt="" width="50" height="50">
+            <span class="name">{{item.username}}</span>
         </a>
         <div class="user-info">
-            <a class="name" href="/people/哈哈小姐" target="_blank">{{item.title}}</a>
+            <a class="name" href="/people/哈哈小姐" target="_blank">标题为：{{item.title}}</a>
             <p class="ell"></p>
         </div>
     </div>
     <div class="content">
-        <h3 class="title content-title"><a href="/topic/5ad4164d46d01604d8511d12" target="_blank">{{item.content}}</a></h3>
+        <h3 class="title content-title"><a href="/topic/5ad4164d46d01604d8511d12" target="_blank">内容为：{{item.content}}</a></h3>
         <div class="imglist" v-for="(pic, k) in jsonChange(item.pics)">
             <img class="content-picture" :src="attachImageUrl(pic)" alt="">
         </div>
@@ -130,6 +130,14 @@ export default{
         methods: {
             showReply(){
                 this.isReply = true
+            },
+            userImageUrl(srcUrl) {
+              var that=this;
+              
+              if (srcUrl !== undefined) {
+                 return this.$store.state.userpicUrl+srcUrl;
+                 alert(this.$store.state.userpicUrl+srcUrl);
+               }
             },
             attachImageUrl(srcUrl) {
               var that=this;

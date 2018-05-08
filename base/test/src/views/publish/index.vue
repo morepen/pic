@@ -1,6 +1,6 @@
 <template>
   <div class="upload" ref="uploader">
-    <div v-show="true">1{{$store.state.userinfo.id}}</div>
+    <div v-show="true">用户id{{$store.state.userinfo.id}}</div>
     <div class="content">
         <div class="up-head">
             <i class="iconfont">&#xe616;</i>发布新闻图片
@@ -107,6 +107,7 @@
                 content:this.content,
                 imgData:imgData
               }
+              alert(this.content);
               if(this.title == null ||this.title== undefined ||this.title==''){
                        alert('标题不能为空');
                        return;

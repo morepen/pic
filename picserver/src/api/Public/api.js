@@ -96,7 +96,8 @@ exports.GetApi = function (_req, _res, _callback) {
                     if(err){
                        return cbError(10014, Me.cb);
                     }else{
-                      Me.cb(200, _err, username); 
+                      console.log("给"+username+"发送邮件成功");
+                      Me.cb(200, _err,username); 
                     }
               })
             })
@@ -171,10 +172,12 @@ exports.GetApi = function (_req, _res, _callback) {
         },
         PicUpload:function (){
             console.log("PicUpload");
-            var Me, userid,title,imgData;
+            var Me, userid,title,imgData,content;
             Me = this;
             userid=Me.getParam('userid');
             title = Me.getParam('title');
+            content = Me.getParam('content');
+            console.log(content);
             imgData = Me.getParam('imgData');
             var picArr=[];
             for(var i = 0;i < imgData.length; i++) {
@@ -189,8 +192,8 @@ exports.GetApi = function (_req, _res, _callback) {
                 picArr[picArr.length]=filename;    
             }
             var pics=JSON.stringify(picArr);  
-            var sqlCmd="insert into pics (userid,title,pics,uploadtime) values(?,?,?,?);";
-            var sql_params=[userid,title,pics,timetemp];
+            var sqlCmd="insert into pics (userid,title,pics,uploadtime,content) values(?,?,?,?,?);";
+            var sql_params=[userid,title,pics,timetemp,content];
             Me.db.query(sqlCmd,sql_params,function (_err, _results) {
                 console.log(_results);
                 if (!_err) {
@@ -207,7 +210,8 @@ exports.GetApi = function (_req, _res, _callback) {
             // var start = Me.getParam('start');
             // var limit = Me.getParam('limit');
             var sqlParams=[];
-            var sqlCmd = 'select * from pics ';
+            var sqlCmd = 'select * from pics as a LEFT JOIN users as b ON a.userid=b.id;';
+            console.log(sqlCmd);
             Me.db.query(sqlCmd, sqlParams, function (_err, _results) {
                 if (!_err) {
                     return Me.cb(200, null, _results);
