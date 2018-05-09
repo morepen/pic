@@ -78,13 +78,16 @@
                   }
 		          var that=this;
 		          api.Regist(data).then(function (response) {
+                     debugger;
 		            if(response.code=="200"){
-                       debugger;
+                       alert("注册成功");
                        setTimeout(function(){
-                            const url = "/";
-                            _this.$router.push({"path":url});
+                            const url = 'usercenter';
+                            that.$router.push({"path":url});
                         },1000)
-		            }
+		            }else{
+                       alert(response.msg);
+                    }
 				
 				  })
 				 .catch(function (error) {

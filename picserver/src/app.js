@@ -12,7 +12,7 @@
     var RedisStore = require('connect-redis')(session);
     settings.excelDir = path.join(__dirname, 'web/excel/');
     settings.picDir = path.join(__dirname, 'web/upload/');
-    settings.activeUrl="http://127.0.0.1:8091/Auth/keycheck.html"
+    settings.activeUrl="http://116.196.81.196:8091/Auth/keycheck.html"
     settings.activeKey='20180506morepen';
     if (cluster.isMaster) {
         console.log('master');
