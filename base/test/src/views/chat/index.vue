@@ -15,38 +15,38 @@
                 <button class="btn btn-primary col-sm-1" @click.prevent="send">发送</button>
             </div>
         </form>
+        <div>在线用户名:{{userlist}}</div>
     </div>
 </template>
 <script>
+    import io from 'socket.io-client'
     export default {
         data() {
             return {
                 ws: null,
                 nickName: "123",
                 chatList: [],
-                content: ""
+                content: "",
+                userlist:[]
             }
         },
+        created() {
+            this.socket = io.connect("http://localhost:3000/")
+            this.socket.on('news', function (data) {
+            this.userlist=data['db'];
+            alert(JSON.stringify(data));
+            var string = "";
+            for(i = 0; i < data['length']; i++){
+                console.log(data['db'][i]['username']);
+                string += '<h4>' + data['db'][i]['username'] + '</h4>';
+            }
+            this
+            })
+        },
         mounted: function () {
-                this.ws = new WebSocket("ws://127.0.0.1:8081");
-                this.ws.onopen = function () {
-                    console.log("连接成功")
-                }
-                var _this = this
-                this.ws.onmessage = function (ev) {
-                    var item = JSON.parse(ev.data)
-                    _this.chatList.push(item)
-                }
             },
         methods: {
-                send() {
-                    var data = {
-                        nickName: this.nickName,
-                        content: this.content
-                    }
-                    //将信息发送到后端
-                    this.ws.send(JSON.stringify(data))
-                }
+               
         }
     }
 </script>
