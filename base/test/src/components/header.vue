@@ -19,7 +19,7 @@
                 <li  ><a href="/month">月榜</a></li>
                 <router-link to="pass" v-show="false"><li class="hid post"><a href="/post/pass">审贴</a></li> </router-link>
                 <router-link to="publish"><li class="hid post-up"><a class="post-up" href="/post/up">投稿</a></li></router-link>
-                <router-link to="usercenter"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
+                <router-link :to="{ path:'/usercenter', query: { num:12} }"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
                 <router-link to="chat"><li class="hid post-up"><a class="post-up" href="/post/up">聊天室</a></li></router-link>
                 <li class="user">
                     

@@ -12,6 +12,9 @@
 		components: {
 			'pic-main':PicMain
 		},
+		created() {
+		  alert(this.$route.query.num);
+		},
 		data(){
 			return{
 				isNowPage: true
