@@ -1,22 +1,10 @@
 <template>
     <div class="chat">
-       <h2 class="text-center">在线聊天室</h2>
-        <p>昵称:{{nickName}}</p>
-        <form action="" class="form-horizontal">
-            <div class="form-group">
-                <div class="chat-list form-control">
-                    <p v-for="item in chatList">{{item.nickName}} : {{item.content}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" v-model="content" placeholder="请输入内容">
-                </div>
-                <button class="btn btn-primary col-sm-1" @click.prevent="send">发送</button>
-            </div>
-        </form>
-        <div v-for="(item, index) in userlist">在线用户名:{{item.username}}</div>
-        <div>{{content}}</div>
+        <div>在线用户列表:</div>
+        <div v-for="(item, index) in userlist">
+           <img class="avatar" :src="attachImageUrl(item.userpic)"  width="55" height="55">
+           <p>{{item.username}}</p>
+        </div>
     </div>
 </template>
 <script>
@@ -27,7 +15,7 @@
                 ws: null,
                 nickName: "123",
                 chatList: [],
-                content: "",
+                content: "444",
                 userlist:[]
             }
         },
@@ -37,25 +25,29 @@
             
         },
         mounted: function () {
-              getonline:function(){
-                    this.socket = io.connect("http://localhost:3000/")
-                    this.socket.on('news', function (data) {
-                    this.userlist=data['db'];
-                    this.content="123"
-                    alert(this.userlist[0].username);
-                
-
-                    var string = "";
-                    for(i = 0; i < data['length']; i++){
-                        console.log(data['db'][i]['username']);
-                        string += '<h4>' + data['db'][i]['username'] + '</h4>';
-                    }
-               
-                    })
-              }
-            },
+              
+        },
         methods: {
-               
+            getonline(){
+                    this.content=555;
+                    this.socket = io.connect("http://localhost:3000/");
+                    var _this=this;
+                    this.socket.on('news', function (data) {
+                        _this.userlist=data['db'];
+                        var string = "";
+                        for(i = 0; i < data['length']; i++){
+                            console.log(data['db'][i]['username']);
+                            string += '<h4>' + data['db'][i]['username'] + '</h4>';
+                        }
+                   
+                    })
+            },
+            attachImageUrl(srcUrl) {
+              var that=this;              
+              if (srcUrl !== undefined) {
+                 return this.$store.state.userpicUrl+srcUrl;
+               }
+            }    
         }
     }
 </script>

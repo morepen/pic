@@ -17,7 +17,7 @@ io.sockets.on('connection', function (socket) {
 	var users   = [];
 	var length  = 0;
 	var pollingLoop = function () {
-		var query   = connection.query('SELECT username FROM users');
+		var query   = connection.query('SELECT * FROM users');
 		var users2  = [];
 		var length2 = 0;
 	    query.on('error', function(err) {

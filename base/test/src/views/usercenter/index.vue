@@ -42,15 +42,15 @@ export default{
             }
         },
         methods: {
-          register:function(){},
+          register(){
+
+          },
           attachImageUrl(srcUrl) {
-              var that=this;
-              
+              var that=this;              
               if (srcUrl !== undefined) {
                  return this.$store.state.userpicUrl+srcUrl;
-                 alert(this.$store.state.userpicUrl+srcUrl);
                }
-            },
+           }
         }
     }
 
