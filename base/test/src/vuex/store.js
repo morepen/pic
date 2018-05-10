@@ -10,7 +10,9 @@ export const store= new Vuex.Store({
     userinfo:localStorage["userinfo"]?JSON.parse(localStorage["userinfo"]): [],
     //userpicUrl:'/assets/img/userpic/',
     userpicUrl:'http://116.196.81.196:8091/images/userpic/',
-    uploadpath:'http://116.196.81.196:8091/upload/'
+    uploadpath:'http://116.196.81.196:8091/upload/',
+    onlinenum:'1'
+
   },
   getters:{
     sum:state=>{

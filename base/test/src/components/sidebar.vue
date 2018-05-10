@@ -60,7 +60,7 @@ export default{
         methods: {
           loginOut:function(){
              localStorage.userinfo ="";
-             this.$router.push({ path: 'usercenter' }) 
+             this.$router.push({ path: 'login' }) 
           }
         }
     }

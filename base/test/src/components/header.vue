@@ -30,7 +30,9 @@
                 </li>
             </ul>
         </div>
+        
         <div class="login">
+          <span class="onlinenum">在线人数：{{$store.state.onlinenum}}</span>
           <router-link to="login"><span><span class="loginStyle">[</span>登陆<span class="loginStyle">]</span></span></router-link>
           <router-link to="register"><span><span class="loginStyle">[</span>注册<span class="loginStyle">]</span></span></router-link>
         </div>
@@ -44,7 +46,7 @@
     </div>
     <div class="head-phone">
         <i class="iconfont back">&#xe605;</i>
-        <h1>逗你的 【正经网站】内涵图，搞笑图片</h1>
+        <h1></h1>
         <a href="/user/login" class="iconfont user">
             &#xe606;
         </a>
@@ -160,7 +162,6 @@
 
 #header .head-main .login {
     float: right;
-    max-width: 190px;
     height: 60px;
     box-sizing: border-box;
     font-size: 16px;
@@ -169,6 +170,9 @@
     overflow: hidden;
 }
 
+.onlinenum{
+    padding-right:16px;
+}
 
 #header .head-main .login1 .login-btn:hover {
     background-color: #eff3f5;

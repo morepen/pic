@@ -1,24 +1,12 @@
 <template>
     <div class="chat">
-      <div class="chat_online">
-        <p class="online-text">在线用户列表:</p>
+      <div class="userlist">
+        <p>在线用户列表:</p>
         <div class="useritem" v-for="(item, index) in userlist">
            <img class="avatar" :src="attachImageUrl(item.userpic)"  width="55" height="55">
            <p>{{item.username}}</p>
         </div> 
       </diV>
-      <ul class="chat_head">
-             <li>通知</li>
-             <li>聊天</li>
-      </ul>
-      <div class="chat_content">
-         <div class="chat_left"></div>
-         <div class="chat_right">
-             <div class="chat_info">122</div>
-             <div class="chat_handle"></div>
-         </div>
-      </div>
-
     </div>
 </template>
 <script>
@@ -55,7 +43,6 @@
                     this.socket.on('news', function (data) {
                         _this.userlist=data['db'];
                         _this.$store.state.onlinenum=data['db'].length;
- 
                         var string = "";
                         for(i = 0; i < data['length']; i++){
                             console.log(data['db'][i]['username']);
@@ -77,38 +64,20 @@
   .chat{
     width: 800px;
     margin: 0 auto;
+    float: none;
   }
-  .chat_online{
-    margin-top:100px;
-    text-align:left;
-    background:#fff;
-    height:120px;
+  .userlist{
+    min-height:300px;
   }
-  
   .useritemDiv{
      overflow:hidden;
-     background:#fff;
    }
-  .online-text{
-    line-height:30px;
-    padding-left:10px;
-  }
   .useritem{
      float:left;
      width:60px;
-     margin:10px 5px;
+     margin:0 5px;
   }
   .avatar{
     border-radius:50%;
-  }
-  .chat_munu li{
-    float:left;
-    width:40px;
-    line-height:36px;
-  }
-  .chat_head{
-    overflow:hidden;
-
-
   }
 </style>

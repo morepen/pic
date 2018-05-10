@@ -2,7 +2,6 @@ import Vue from 'vue'
 import './index.css'
 
 const root = window.document.body
-
 export default function Alert(config) {
   const wrap = document.createElement('div')
   const div = document.createElement('div')
@@ -17,12 +16,20 @@ export default function Alert(config) {
     data: {
       title: config.title || '提示',
       content: config.content || '',
-      btn: config.btn || '确定'
+      btn: config.btn || '确定',
+      routerurl:config.routerurl || ''
     },
     methods: {
+      
       close() {
-        root.removeChild(wrap)
-        resolve(this)
+        if(this.routerurl){
+         const url = 'login';
+         alert(this.routerurl);
+         this.$router.push({ path: 'login' }) 
+        }else{
+          root.removeChild(wrap)
+          resolve(this)
+        }
       }
     },
     template: `
