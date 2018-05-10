@@ -1,54 +1,21 @@
 <template>
-  <div class="page">
-
-<div class="post-item" v-for="(item, index) in piclist">
-    <div></div>
-    <div class="post-head clearfix">
-        <a class="avatar clearfix" href="/people/哈哈小姐" target="_blank">
-            <img :src="userImageUrl(item.userpic)" alt="" width="50" height="50">
-            <span class="name">{{item.username}}</span>
-        </a>
-        <div class="user-info">
-            <a class="name" href="/people/哈哈小姐" target="_blank">标题为：{{item.title}}</a>
-            <p class="ell"></p>
-        </div>
-    </div>
-    <div class="content">
-        <h3 class="title content-title"><a href="/topic/5ad4164d46d01604d8511d12" target="_blank">内容为：{{item.content}}</a></h3>
-        <div class="imglist" v-for="(pic, k) in jsonChange(item.pics)">
-            <img class="content-picture" :src="attachImageUrl(pic)" alt="">
-        </div>
-    </div>
-    <div class="port">
-        <div class="bar">
-            <a href="javascript:void(0)" class="share-bn">
-                <span><i class="iconfont"></i></span>
-                <ul>
-                    <li><span onclick="shareTo(0, 'qq' ,'5ad4164d46d01604d8511d12')"><em class="iconfont"></em>QQ空间</span></li>
-                    <li><span onclick="shareTo(0, 'wb' ,'5ad4164d46d01604d8511d12')"><em class="iconfont"></em>新浪微博</span></li>
-                    <li class="wx_code"><span><em class="iconfont"></em>微信</span><img src="http://qr.liantu.com/api.php?&amp;w=153&amp;text=laosij.cn/topic/5ad4164d46d01604d8511d12"></li>
-                </ul>
-            </a>
-            <a class="reply-button" v-on:click="showReply()" href="javascript:void(0)"  data-topic-id="5ad4164d46d01604d8511d12">
-                <span><i class="iconfont"></i>1</span>
-            </a>
-            <a class="like" href="javascript:void(0)" liked="0" data-topic-id="5ad4164d46d01604d8511d12">
-                <span><i class="iconfont"></i><em>1</em></span>
-            </a>
-        </div>
-    </div>
-    <div class="reply" v-show="isReply">
-        <div class="default" v-show="falses"><i class="iconfont"></i><span>加载中1...</span></div>
-        <div class="reply-wrap">
-
-        </div>
-        <div class="comment clearfix">
-            <textarea class="comment-content" data-topic-id="5ad4164d46d01604d8511d12" placeholder="大家都是文化人，有话好好说"></textarea>
-            <span class="comment-bnt">发表评论</span>
-        </div>
-    </div>
-</div>
-   
+<div class="page">
+  <ul class="article-list">
+    <li class="article-list-li" v-for="(item, index) in piclist">
+      <a class="article-list-avatar"><img :src="userImageUrl(item.userpic)" alt=""></a> 
+      <h2 class="article-tip"><a>{{item.title}}</a></h2> 
+      <p class="article-abstract">{{item.content}}</p> 
+        <p>
+          <span><a>{{item.username}}</a></span> 
+          <span>1小时前</span> 
+          <span>js问题集合</span> 
+          <span class="article-list-hint">
+            <a><i class="ivu-icon ivu-icon-chatbox-working"></i>8
+              <i class="ivu-icon ivu-icon-ios-eye"></i>106
+            </a></span>
+        </p>
+      </li>
+   </ul> 
 <div id="paging">
     <ul class="clearfix">
         
@@ -164,8 +131,121 @@ export default{
 
 }
 .content-picture{
-    width:160px;
-    height:160px; 
+    width:140px;
+    height:140px;
+    margin:5px;
+    border:#ccc solid 1px;
+}
+
+.article-list {
+    padding: 5px 0;
+    background-color: #fff;
+    border-radius: 2px;
+    font-size: 12px;
+    text-align:left;
+}
+
+.article-list li:last-child {
+    border-bottom: none
+}
+
+.article-list .article-list-li {
+    position: relative;
+    height: 120px;
+    margin-top: 0;
+    padding: 10px 0 10px 75px;
+    border-bottom: 1px dotted #e9e9e9
+}
+
+.article-list-li .article-list-avatar {
+    position: absolute;
+    left: 15px;
+    top: 10px
+}
+
+.article-list-li h2 {
+    line-height: 26px;
+    font-size: 0
+}
+
+.article-list-li h2 * {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top
+}
+
+.article-list-li h2 a {
+    max-width: 86%;
+    margin-left: 100px;
+    margin-right: 10px;
+    overflow: hidden;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px
+}
+
+.article-list-li h2 span {
+    position: relative;
+    top: 3px;
+    margin-left: 5px
+}
+
+.article-list-li a:hover {
+    color: #009e94
+}
+
+.article-list-li p {
+    position: relative;
+    line-height: 20px;
+    margin-left: 100px;
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px
+}
+
+.article-list-li p span {
+    padding-right: 15px
+}
+
+.article-list-li p span a {
+    color: #999
+}
+
+.article-list-avatar img {
+    width: 120px;
+    height: 100px
+}
+
+.article-list-hint {
+    position: absolute;
+    right: 0;
+    top: -2px
+}
+
+.article-list-hint i {
+    padding-left: 10px;
+    padding-right: 5px;
+    font-size: 18px;
+    color: #ccc;
+    vertical-align: middle
+}
+
+.article-list-li .article-abstract {
+    text-indent:0px;
+    position: relative;
+    line-height: 24px;
+    margin-left: 100px;
+    margin-right: 10px;
+    font-size: 13px;
+    color: #333;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2
 }
 </style>
 
