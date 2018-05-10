@@ -15,7 +15,8 @@
                 <button class="btn btn-primary col-sm-1" @click.prevent="send">发送</button>
             </div>
         </form>
-        <div>在线用户名:{{userlist}}</div>
+        <div v-for="(item, index) in userlist">在线用户名:{{item.username}}</div>
+        <div>{{content}}</div>
     </div>
 </template>
 <script>
@@ -31,19 +32,27 @@
             }
         },
         created() {
-            this.socket = io.connect("http://localhost:3000/")
-            this.socket.on('news', function (data) {
-            this.userlist=data['db'];
-            alert(JSON.stringify(data));
-            var string = "";
-            for(i = 0; i < data['length']; i++){
-                console.log(data['db'][i]['username']);
-                string += '<h4>' + data['db'][i]['username'] + '</h4>';
-            }
-            this
-            })
+
+            this.getonline();
+            
         },
         mounted: function () {
+              getonline:function(){
+                    this.socket = io.connect("http://localhost:3000/")
+                    this.socket.on('news', function (data) {
+                    this.userlist=data['db'];
+                    this.content="123"
+                    alert(this.userlist[0].username);
+                
+
+                    var string = "";
+                    for(i = 0; i < data['length']; i++){
+                        console.log(data['db'][i]['username']);
+                        string += '<h4>' + data['db'][i]['username'] + '</h4>';
+                    }
+               
+                    })
+              }
             },
         methods: {
                
