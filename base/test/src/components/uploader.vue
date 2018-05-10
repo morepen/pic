@@ -11,6 +11,7 @@
                     <span>+</span>
                 </div>
             </section>
+
         </div>
 
         <section v-if="files.length != 0" class="upload-func">
@@ -57,7 +58,7 @@
                 for (let i = 0; i < list.length; i++) {
                     if (!this.isContain(list[i])) {
                         const item = {
-                            name: list[i].name,
+                            name: list[i].name.slice(-7),
                             size: list[i].size,
                             file: list[i]
                         }
