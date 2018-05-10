@@ -23,7 +23,7 @@
         },
         10005: {
             name: 'No Access',
-            message: '该帐号未激活'
+            message: '该帐号未激活，登陆邮箱激活账户'
         },
         10006: {
             name: 'Username Exist',

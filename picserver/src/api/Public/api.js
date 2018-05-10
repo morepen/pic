@@ -35,11 +35,12 @@ exports.GetApi = function (_req, _res, _callback) {
             this.cb(200, "", 'ok');
         },
         Register:function(){
-            var Me, username, password,email;
+            var Me, username, password,email,userpic;
             Me = this;
             username = Me.getParam('username');
             password = Me.getParam('password');
             email=Me.getParam('email');
+            userpic=Math.floor(Math.random()*5 + 1)+".jpg";
             var time=new Date().getTime();
             var key=md5(username+time+settings.activeKey);
             var ep = new EventProxy();
@@ -73,12 +74,13 @@ exports.GetApi = function (_req, _res, _callback) {
                });
             })
             ep.once('insert1', function () {
-                var sqlCmd2 = "insert into users (username,password,email,activecode) values (?,?,?,?);";
+                var sqlCmd2 = "insert into users (username,password,email,activecode,userpic) values (?,?,?,?,?);";
                 var sqlParams2=[];
                 sqlParams2[sqlParams2.length] = username;
                 sqlParams2[sqlParams2.length] = password;
                 sqlParams2[sqlParams2.length] =email;
                 sqlParams2[sqlParams2.length] =key;
+                sqlParams2[sqlParams2.length] =userpic;
                 Me.db.query(sqlCmd2, sqlParams2, function (_err, _results) {
                   console.log(_err);
                     if (!_err) {
@@ -93,14 +95,43 @@ exports.GetApi = function (_req, _res, _callback) {
             ep.once('sendemail',function(){                
                 var activeUrl=settings.activeUrl+"?usernmae="+username+"&key="+key;
                 Me.sendEmail(email,username,activeUrl,function(err,result){
-                    if(err){
-                       return cbError(10014, Me.cb);
-                    }else{
-                      console.log("给"+username+"发送邮件成功");
-                      Me.cb(200, _err,username); 
-                    }
+                    console.log("err:"+err);
+                    console.log("username1:"+username);
+                    console.log("result:"+result);
+                    Me.cb(200, err,username); 
+                    // if(err){
+                    //    return cbError(10014, Me.cb);
+                    // }
+                    console.log("username:"+username);
+                    console.log("给"+username+"发送邮件成功");
+                    Me.cb(200, err,username); 
+                   
               })
             })
+        },
+         sendEmail:function(email,username,url,cb){
+            var Me=this;
+            var transporter = nodemailer.createTransport({
+                service: 'qq',
+                auth: {
+                    user: '493891498@qq.com',
+                    pass: 'vynsjdnpdyyjbjeg' //授权码,通过QQ获取
+                }
+            });
+            var mailOptions = {
+                from: '493891498@qq.com', // 发送者
+                to: email, // 接受者,可以同时发送多个,以逗号隔开
+                subject: '邮件', // 标题
+                //text: 'Hello world', // 文本
+                html: '<h2>尊敬'+username+'，您已注册本站成功</h2><div>请点击如下链接激活:'+url+'</div>',
+            };
+            transporter.sendMail(mailOptions, function (err, info) {
+                if (err) {
+                    console.log(email+"该邮箱未发送成功");
+                    return cb(true,null);
+                }
+                cb(null,{});
+            });
         },
         CheckActive:function(){
             console.log("CheckActive");
@@ -220,35 +251,7 @@ exports.GetApi = function (_req, _res, _callback) {
                     return cbError(10001, Me.cb);
                 }
             });
-         },
-         sendEmail:function(email,username,url,cb){
-            var Me=this;
-            var transporter = nodemailer.createTransport({
-                service: 'qq',
-                auth: {
-                    user: '493891498@qq.com',
-                    pass: 'vynsjdnpdyyjbjeg' //授权码,通过QQ获取
-                }
-            });
-            var mailOptions = {
-                from: '493891498@qq.com', // 发送者
-                to: email, // 接受者,可以同时发送多个,以逗号隔开
-                subject: '邮件', // 标题
-                //text: 'Hello world', // 文本
-                html: '<h2>尊敬'+username+'，您已注册本站成功</h2><div>请点击如下链接激活:'+url+'</div>',
-            };
-            transporter.sendMail(mailOptions, function (err, info) {
-                if (err) {
-                    //console.log(err);
-                    console.log(email+"该邮箱未发送成功");
-                    return cb(true,null);
-                }
-                console.log(email+"该邮箱发送成功");
-                cb(null,{});
-                //var suc_text="给"+qq+"发送成功";
-                //return Me.callbackFunction(null,suc_text);
-            });
-        }
+         }
 
 
 

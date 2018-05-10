@@ -19,8 +19,8 @@
             <div class="item hc-btn finish" v-on:click="Login">登录</div>
             <router-link to="register"><a class="tologin" href="/user/new">还没有账号，马上注册</a></router-link>
             
-            <span class="more">第三方账号登录</span>
-            <div class="item login-more clearfix">
+            <span class="more" v-show="false">第三方账号登录</span>
+            <div class="item login-more clearfix" v-show="false">
                 <a class="item btn btn-quick" style="margin-right: 20px;" href="/auths/wb"><em class="iconfont" style="color: #ff424f;"></em></a>
                 <a class="item btn btn-quick" href="/auths/qq"><em class="iconfont" style="color: #43d2f4;"></em></a>
             </div>
@@ -33,6 +33,7 @@
 </template>
 <script>
     import md5 from 'js-md5';
+    import Alert from '../../components/Alert'
     import api from '../../fetch/api';
     export default{
         data(){
@@ -55,10 +56,16 @@
                   api.Login(data).then(function (response) {
 
                     if(response.code=="200"){
-                      debugger;
+                      Alert({
+                          content: '登陆成功'
+                      })
                       that.$store.state.userinfo=response.data[0];
                       localStorage.userinfo = JSON.stringify(response.data[0]);
                       that.$router.push({ path: 'usercenter' }) 
+                    }else{
+                       Alert({
+                          content: response.msg
+                        })
                     }
                 
                   })
@@ -108,7 +115,7 @@
 .tologin {
     width: 100%;
     height: 25px;
-    padding-top: 10px;
+    padding-top: 25px;
     line-height: 25px;
     text-align: center;
     display: block;

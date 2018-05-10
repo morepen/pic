@@ -17,9 +17,10 @@
                 <li  class="on"  ><a href="/">最新</a></li>
                 <li  ><a href="/week">周榜</a></li>
                 <li  ><a href="/month">月榜</a></li>
-                <router-link to="pass"><li class="hid post"><a href="/post/pass">审贴</a></li> </router-link>
+                <router-link to="pass" v-show="false"><li class="hid post"><a href="/post/pass">审贴</a></li> </router-link>
                 <router-link to="publish"><li class="hid post-up"><a class="post-up" href="/post/up">投稿</a></li></router-link>
                 <router-link to="usercenter"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
+                <router-link to="chat"><li class="hid post-up"><a class="post-up" href="/post/up">聊天室</a></li></router-link>
                 <li class="user">
                     
                     <a href="/user/login">
@@ -31,6 +32,11 @@
         </div>
         
         <div class="login">
+          <span class="onlinenum">在线人数：{{$store.state.onlinenum}}</span>
+          <router-link to="login"><span><span class="loginStyle">[</span>登陆<span class="loginStyle">]</span></span></router-link>
+          <router-link to="register"><span><span class="loginStyle">[</span>注册<span class="loginStyle">]</span></span></router-link>
+        </div>
+        <div class="login1" v-show="false">
             <a class="login-btn quick" href="javascript:void(0)"><i class="iconfont">&#xe606;</i>快速登录</a>
             <router-link to="login"><a class="login-btn login-quick" href="/user/login"><i class="iconfont">&#xe6f0;</i>站内登录</a></router-link>
             <a class="login-btn login-quick" href="/auths/qq"><i class="iconfont">&#xe607;</i>QQ&nbsp;登录</a>
@@ -40,7 +46,7 @@
     </div>
     <div class="head-phone">
         <i class="iconfont back">&#xe605;</i>
-        <h1>逗你的 【正经网站】内涵图，搞笑图片</h1>
+        <h1></h1>
         <a href="/user/login" class="iconfont user">
             &#xe606;
         </a>
@@ -156,7 +162,6 @@
 
 #header .head-main .login {
     float: right;
-    max-width: 190px;
     height: 60px;
     box-sizing: border-box;
     font-size: 16px;
@@ -165,16 +170,15 @@
     overflow: hidden;
 }
 
-#header .head-main .login:hover {
-    border-top: 5px solid #3498DB;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
-    height: auto;
+.onlinenum{
+    padding-right:16px;
 }
-#header .head-main .login .login-btn:hover {
+
+#header .head-main .login1 .login-btn:hover {
     background-color: #eff3f5;
 }
 
-#header .head-main .login .login-btn {
+#header .head-main .login1 .login-btn {
     display: block;
     padding: 0 15px;
     height: 55px;
@@ -184,43 +188,43 @@
     line-height: 50px;
 }
 
-#header .head-main .login .login-btn i {
+#header .head-main .login1 .login-btn i {
     padding-right: 10px;
 }
 
-#header .head-main .login .login-btn img {
+#header .head-main .login1 .login-btn img {
     vertical-align: middle;
     padding-right: 5px;
 }
 
-#header .head-main .login .quick {
+#header .head-main .login1 .quick {
     font-weight: bold;
 }
 
-#header .head-main .login .quick i {
+#header .head-main .login1.quick i {
     font-size: 25px;
     vertical-align: middle;
     position: relative;
     top: -2px;
 }
 
-#header .head-main .login .login-quick {
+#header .head-main .login1 .login-quick {
     color: #7a8e9d;
     height: 45px;
     line-height: 45px;
     font-size: 16px;
 }
 
-#header .head-main .login .login-quick:hover {
+#header .head-main .login1 .login-quick:hover {
     color: #3498DB;
 }
 
-#header .head-main .login .login-quick i {
+#header .head-main .login1 .login-quick i {
     font-size: 20px;
     vertical-align: middle;
 }
 
-#header .head-main .login .login-quick .set {
+#header .head-main .login1 .login-quick .set {
     position: relative;
     top: -2px;
 }
@@ -377,6 +381,11 @@
     margin:10px;
     width:40px;
     height:40px;
+}
+.loginStyle{
+    color:#41b883;
+    font-weight:bloder;
+    font-size:16px;
 }
 </style>
 

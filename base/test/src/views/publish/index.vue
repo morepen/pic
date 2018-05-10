@@ -1,6 +1,5 @@
 <template>
   <div class="upload" ref="uploader">
-    <div v-show="true">用户id{{$store.state.userinfo.id}}</div>
     <div class="content">
         <div class="up-head">
             <i class="iconfont">&#xe616;</i>发布新闻图片
@@ -84,6 +83,7 @@
 </style>
 
 <script>
+    import Alert from '../../components/Alert'
     import uploader from '../../components/uploader.vue';
     import api from '../../fetch/api.js';
     export default{
@@ -97,6 +97,15 @@
                 content:''
             }
         },
+        created() {
+         if(!this.$store.state.userinfo.id){
+            var _this=this;
+            setTimeout(function(){
+                            const url = 'login';
+                            _this.$router.push({"path":url});
+            },1000)
+          }
+        },
         methods:{
           upload(){
             var imgData=this.$store.state.files;
@@ -107,7 +116,6 @@
                 content:this.content,
                 imgData:imgData
               }
-              alert(this.content);
               if(this.title == null ||this.title== undefined ||this.title==''){
                        alert('标题不能为空');
                        return;
@@ -119,7 +127,9 @@
               var that=this;
               api.PicUpload(data).then(function (response) {
                 if(response.code=="200"){
-                      alert("上传成功");
+                      Alert({
+                          content:"上传成功"
+                        })
                       that.$router.push({ path: '/' })
               }
         
