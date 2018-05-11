@@ -3,3 +3,13 @@ base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/upload.css
 base/test/src/components/list.vue
+base/test/src/router/index.js
+base/test/src/App.vue
+base/test/src/assets/css/page/body.css
+base/test/src/assets/css/page/chat.css
+base/test/src/assets/css/page/community.css
+base/test/src/assets/css/page/default.css
+base/test/src/assets/css/page/edit.css
+base/test/src/assets/css/page/footer.css
+base/test/src/assets/css/page/head_phone.css
+base/test/src/assets/css/page/header.css
