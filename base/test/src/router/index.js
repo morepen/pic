@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../views/index/index'
+import Detail from '../views/index/detail'
 import Login from '../views/login/login'
 import Register from '../views/login/register'
 import Publish from '../views/publish/index'
@@ -14,7 +15,14 @@ export default new Router({
     {
       	path: '/',
       	name: 'Index',
-      	component: Index
+      	component: Index,
+        children: [  //这里就是二级路由的配置
+          {
+            path: '/detail',
+            name: 'detail',
+            component: Detail
+          }
+        ]
     },
     {
       path: '/login',

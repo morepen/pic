@@ -1,6 +1,7 @@
 <template>
 <div class="page">
   <ul class="article-list">
+   <router-link :to="{ path:'/detail', query: { id:12} }">
     <li class="article-list-li" v-for="(item, index) in piclist">
       <a class="article-list-avatar"><img :src="userImageUrl(item.userpic)" alt=""></a> 
       <h2 class="article-tip"><a>{{item.title}}</a></h2> 
@@ -8,13 +9,14 @@
         <p>
           <span><a>{{item.username}}</a></span> 
           <span>1小时前</span> 
-          <span>js问题集合</span> 
+          <span>标签</span> 
           <span class="article-list-hint">
             <a><i class="ivu-icon ivu-icon-chatbox-working"></i>8
               <i class="ivu-icon ivu-icon-ios-eye"></i>106
             </a></span>
         </p>
       </li>
+      </router-link>
    </ul> 
 <div id="paging">
     <ul class="clearfix">
