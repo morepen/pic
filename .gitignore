@@ -3,3 +3,4 @@ base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/upload.css
 base/test/src/components/list.vue
+picserver/src/web/Auth/keycheck.html
