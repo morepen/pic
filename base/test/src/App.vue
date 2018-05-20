@@ -9,13 +9,11 @@
 <script>
   import TopHeader from './components/header.vue'
   import FooterNav from './components/footer.vue'
-  import PicMain from './components/main.vue'
   export default{
    name: 'app',
    components: {
       'footer-nav':FooterNav,
-      'top-header': TopHeader,
-      'pic-main':PicMain
+      'top-header': TopHeader
     },
     data(){
       return{
@@ -29,7 +27,7 @@
 @import './assets/css/public/default.css';
 @import './assets/css/public/public.css';
 body {
-    background-color: #ebebeb;
+    background-color: #f5f7f9;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

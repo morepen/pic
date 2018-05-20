@@ -6,12 +6,14 @@ export const store= new Vuex.Store({
   state:{
     goodsList:localStorage["goodsList"]?JSON.parse(localStorage["goodsList"]): [],
     files:[],
-    //userinfo:[],
     userinfo:localStorage["userinfo"]?JSON.parse(localStorage["userinfo"]): [],
-    //userpicUrl:'/assets/img/userpic/',
     userpicUrl:'http://116.196.81.196:8091/images/userpic/',
     uploadpath:'http://116.196.81.196:8091/upload/',
-    onlinenum:'1'
+    onlinenum:'0',
+    contentshow:false,
+    itemList:localStorage["itemList"]?JSON.parse(localStorage["itemList"]): [],
+    loginOut:localStorage["loginOut"]?JSON.parse(localStorage["loginOut"]):true,
+    loginIn:localStorage["loginIn"]?JSON.parse(localStorage["loginIn"]):false
 
   },
   getters:{

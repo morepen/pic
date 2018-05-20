@@ -20,11 +20,11 @@
         <p class="title">我的评论</p>
         <p class="iconfont">&#xe625;</p>
     </a>
-    <a href="/user/out" class="item clearfix">
-        <p class="title">退出登录</p>
+    <a href="/user/out" class="item cle
         <p class="iconfont">&#xe625;</p>
     </a>
-    <a href="" class="item clearfix">
+    <a href="" class="item clearfix">arfix">
+        <p class="title">退出登录</p>
         <p class="title">关于我们</p>
         <p class="iconfont">&#xe625;</p>
     </a>

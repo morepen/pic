@@ -8,7 +8,10 @@ import Publish from '../views/publish/index'
 import Pass from '../views/pass/index'
 import cart from '../views/cart/index'
 import chat from '../views/chat/index'
+import room from '../views/chat/room'
+import near from '../views/near/index'
 import Usercenter from '../views/usercenter/index'
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -16,7 +19,12 @@ export default new Router({
       	path: '/',
       	name: 'Index',
       	component: Index,
-        children: [  //这里就是二级路由的配置
+        children: [
+          {
+            path: '/detail',
+            name: 'detail',
+            component: Detail
+          },
           {
             path: '/detail',
             name: 'detail',
@@ -55,10 +63,18 @@ export default new Router({
       component: cart
     },
     {
-      path: '/chat',
-      name: 'chat',
-      component:chat
-    }
+      path: '/near',
+      name: 'near',
+      component: near
+    },    
+    { 
+                path: '/chat', 
+                component: chat, 
+                children:[
+                    { path: '/chat/index', component: chat},
+                    { path: '/chat/room', component: room}
+                ]
+            },
 
   ]
 })

@@ -1,36 +1,30 @@
 <template>
   <div class="sidebar">
-    <div id="asideProfile" class="aside-box">
-      <h3 class="aside-title">个人资料</h3>
-      <div class="profile-intro d-flex">
-        <div class="avatar-box d-flex justify-content-center flex-column">
-            <a href="https://my.csdn.net/qq_30604453">
-                <img src="https://avatar.csdn.net/7/1/D/3_qq_30604453.jpg" class="avatar_pic">
-                <span class="username">admin</span>
-            </a>
-         </div>
-         <div><h3 class="signname">"只想做你的骑士"</h3></div>
-       </div>
-       <div class="ivu-btn" v-on:click="loginOut">退出</div>
-    </div>
-    <div class="rank">
-        <span class="title"><i class="iconfont"></i>热门推荐</span>
-        <div class="item clearfix">
-            <a class="head" href="/people/愿祖国繁荣昌盛" target="_blank">
-                <img src="/avatar/愿祖国繁荣昌盛.jpg" alt="愿祖国繁荣昌盛" width="50" height="50">
+        <div class="rank">
+          <span class="title"><i class="iconfont"></i>最新推荐</span>
+          <div class="item clearfix">
+            <a class="head" href="" target="_blank">
+                <img :src="userImageUrl(newData.userpic)" alt="" width="50" height="50">
             </a>
             <div class="info text-left">
-                <a href="/people/愿祖国繁荣昌盛" target="_blank">愿祖国繁荣昌盛</a>
-                <p class="ell">有朋自远方来，虽远必诛…</p>
+                <p class="ell">{{newData.title}}</p>
+                <p class="ell">{{newData.content}}</p>
             </div>
-        </div>  
+          </div>  
         </div>
-        <div class="side-float" >
-            <div class="rank post-rank" v-show="false">
-              <span class="title"><i class="iconfont" style="color: #3498DB;"></i>热门推荐</span>    
+        <div class="rank">
+          <span class="title"><i class="iconfont"></i>热门推荐</span>
+          <div class="item clearfix">
+            <a class="head" href="" target="_blank">
+                <img :src="userImageUrl(newData.userpic)" alt="" width="50" height="50">
+            </a>
+            <div class="info text-left">
+                <p class="ell">{{newData.title}}</p>
+                <p class="ell">{{newData.content}}</p>
             </div>
-
-     <div class="community rank">
+          </div>  
+        </div>
+        <div class="community rank">
             <span class="title"><i class="iconfont" style="vertical-align: middle;"></i>未知领域</span>
             <div class="item clearfix">
                 <div class="info">
@@ -54,6 +48,8 @@ export default{
                 isNowPage: true,
                 username:"",
                 password:"",
+                newData:this.$store.state.itemList[0],
+                rankData:this.$store.state.itemList[0],
                 email:""
             }
         },
@@ -61,7 +57,15 @@ export default{
           loginOut:function(){
              localStorage.userinfo ="";
              this.$router.push({ path: 'login' }) 
-          }
+          },
+          userImageUrl(srcUrl) {
+              var that=this;
+              
+              if (srcUrl !== undefined) {
+                 return this.$store.state.userpicUrl+srcUrl;
+                 alert(this.$store.state.userpicUrl+srcUrl);
+               }
+            }
         }
     }
 

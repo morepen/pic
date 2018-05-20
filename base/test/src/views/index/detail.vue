@@ -1,7 +1,6 @@
 <template>
   <div class="detail">
        <div class="content_detail">11</div>
-       11
   </div>
 </template>
 
@@ -10,7 +9,20 @@
   export default{
         components: {
             'pic-sidebar':PicSidebar
-        }
+        },
+        data(){
+            return{
+                isNowPage: true,
+                title:'',
+                content:''
+            }
+        },
+        created() {
+         if(this.$route.query){
+           this.$store.state.contentshow=false;
+           alert(this.$route.query.id);
+          }
+        },
    }
 </script>
 <style>

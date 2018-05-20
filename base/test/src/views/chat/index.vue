@@ -1,114 +1,68 @@
 <template>
     <div class="chat">
-      <div class="chat_online">
-        <p class="online-text">在线用户列表:</p>
-        <div class="useritem" v-for="(item, index) in userlist">
-           <img class="avatar" :src="attachImageUrl(item.userpic)"  width="55" height="55">
-           <p>{{item.username}}</p>
-        </div> 
-      </diV>
-      <ul class="chat_head">
-             <li>通知</li>
-             <li>聊天</li>
-      </ul>
-      <div class="chat_content">
-         <div class="chat_left"></div>
-         <div class="chat_right">
-             <div class="chat_info">122</div>
-             <div class="chat_handle"></div>
-         </div>
-      </div>
-
+     <router-link to="/chat/room">  
+       <div class="chat_list">
+          <div class="owner_img">
+            <img :src="attachImageUrl(userinfo.userpic)" class="avatar_chat">
+          </div>
+          <div class="owner_name">{{userinfo.username}}</div>
+          <div class="owner_notice">房间说明</div>
+       </div>
+       </router-link>
     </div>
 </template>
 <script>
-    import io from 'socket.io-client'
-    export default {
-        data() {
-            return {
-                ws: null,
-                nickName: "123",
-                chatList: [],
-                content: "444",
-                userlist:[]
+   export default{
+        data(){
+            return{
+                userinfo:this.$store.state.userinfo
             }
         },
         created() {
-          if(!this.$store.state.userinfo.id){
-            var _this=this;
-            setTimeout(function(){
-                            const url = 'login';
-                            _this.$router.push({"path":url});
-            },1000)
-          }else{
-             this.getonline();
-          }                        
-        },
-        mounted: function () {
-              
+
         },
         methods: {
-            getonline(){
-                    this.content=555;
-                    this.socket = io.connect("http://localhost:3000/");
-                    var _this=this;
-                    this.socket.on('news', function (data) {
-                        _this.userlist=data['db'];
-                        _this.$store.state.onlinenum=data['db'].length;
- 
-                        var string = "";
-                        for(i = 0; i < data['length']; i++){
-                            console.log(data['db'][i]['username']);
-                            string += '<h4>' + data['db'][i]['username'] + '</h4>';
-                        }
-                   
-                    })
-            },
-            attachImageUrl(srcUrl) {
+          register(){
+
+          },
+          attachImageUrl(srcUrl) {
               var that=this;              
               if (srcUrl !== undefined) {
                  return this.$store.state.userpicUrl+srcUrl;
                }
-            }    
+           },
+           loginOut:function(){
+             localStorage.userinfo ="";
+             this.$store.state.loginOut=true;
+             this.$store.state.loginIn=false;
+             this.$router.push({ path: 'login' }) 
+          }
         }
-    }
+   }
 </script>
 <style style scoped>
   .chat{
-    width: 800px;
-    margin: 0 auto;
+    max-width: 1100px;
+    padding: 0 10px;
+    margin:0 auto;
+    overflow: hidden;
   }
-  .chat_online{
-    margin-top:100px;
-    text-align:left;
-    background:#fff;
-    height:120px;
-  }
-  
-  .useritemDiv{
-     overflow:hidden;
+  .chat_list{
+     width: 33%;
+     margin:10px;
+     min-height:200px;
      background:#fff;
-   }
-  .online-text{
+  }
+  .avatar_chat{
+    width:80px;
+    height:80px;
+    border-radius:100%;
+    margin-top:18px;
+  }
+  .owner_name{
+    line-height:26px;
+  } 
+  .owner_notice{
     line-height:30px;
-    padding-left:10px;
-  }
-  .useritem{
-     float:left;
-     width:60px;
-     margin:10px 5px;
-  }
-  .avatar{
-    border-radius:50%;
-  }
-  .chat_munu li{
-    float:left;
-    width:40px;
-    line-height:36px;
-  }
-  .chat_head{
-    overflow:hidden;
-
-
   }
 </style>

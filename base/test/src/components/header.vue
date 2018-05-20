@@ -13,14 +13,15 @@
         </div>
         <div class="menu">
             <ul class="clearfix">
-                
-                <li  class="on"  ><a href="/">最新</a></li>
-                <li  ><a href="/week">周榜</a></li>
-                <li  ><a href="/month">月榜</a></li>
+             
+                <li  class="on"  ><a href="/">资讯</a></li>
+                <li v-show="false"><a href="/week">周榜</a></li>
+                <li v-show="false"><a href="/month">月榜</a></li>
                 <router-link to="pass" v-show="false"><li class="hid post"><a href="/post/pass">审贴</a></li> </router-link>
-                <router-link to="publish"><li class="hid post-up"><a class="post-up" href="/post/up">投稿</a></li></router-link>
-                <router-link :to="{ path:'/usercenter', query: { num:12} }"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
-                <router-link to="chat"><li class="hid post-up"><a class="post-up" href="/post/up">聊天室</a></li></router-link>
+                <router-link to="publish" v-show="false"><li class="hid post-up"><a class="post-up" href="/post/up">投稿</a></li></router-link>
+                <router-link :to="{ path:'/usercenter', query: { num:12} }" v-show="false"><li class="hid post-up"><a class="post-up" href="/post/up">我的</a></li></router-link>
+                <router-link to="chat"><li class="hid post-up"><a class="post-up" href="/post/up">聊天</a></li></router-link>
+                <router-link to="near"><li class="hid post-up"><a class="post-up" href="/post/up">附近</a></li></router-link>
                 <li class="user">
                     
                     <a href="/user/login">
@@ -33,8 +34,11 @@
         
         <div class="login">
           <span class="onlinenum">在线人数：{{$store.state.onlinenum}}</span>
+          <span v-show='$store.state.loginOut'>
           <router-link to="login"><span><span class="loginStyle">[</span>登陆<span class="loginStyle">]</span></span></router-link>
           <router-link to="register"><span><span class="loginStyle">[</span>注册<span class="loginStyle">]</span></span></router-link>
+          </span>
+          <span v-show='$store.state.loginIn'>您好，<router-link to="usercenter"><span class="mian-color">{{$store.state.userinfo.username}}</span></router-link></span>
         </div>
         <div class="login1" v-show="false">
             <a class="login-btn quick" href="javascript:void(0)"><i class="iconfont">&#xe606;</i>快速登录</a>
@@ -140,7 +144,7 @@
 }
 
 #header .head-main .menu ul .on a {
-    color: #3498DB;
+    color: #41b883;
 }
 
 #header .head-main .menu ul .user {
@@ -155,9 +159,9 @@
 }
 
 #header .head-main .menu ul li a:hover {
-    border-top: 5px solid #3498DB;
+    border-top: 5px solid #41b883;
     box-shadow: 0 0 2px rgba(0, 0, 0, .1);
-    color: #3498DB;
+    color: #41b883;
 }
 
 #header .head-main .login {
@@ -366,15 +370,15 @@
     }
 
     #header .head-main .menu ul .on a {
-        color: #3498DB;
+        color: #41b883;
         border: none;
     }
 
     #header .head-main .menu ul li a:hover {
         background-color: #e6e6e6;
-        color: #3498DB;
+        color: #41b883;
         border: none;
-        border-bottom: 2px solid #3498DB;
+        border-bottom: 2px solid #41b883;
     }
 }
 .hc_login{
@@ -386,6 +390,9 @@
     color:#41b883;
     font-weight:bloder;
     font-size:16px;
+}
+.mian-color{
+    color:#41b883
 }
 </style>
 
