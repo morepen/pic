@@ -128,7 +128,7 @@
               api.PicUpload(data).then(function (response) {
                 if(response.code=="200"){
                       Alert({
-                          content:"上传成功"
+                          content:"发布成功"
                         })
                       that.$router.push({ path: '/' })
               }

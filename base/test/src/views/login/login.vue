@@ -60,6 +60,10 @@
                           content: '登陆成功'
                       })
                       that.$store.state.userinfo=response.data[0];
+                      that.$store.state.loginOut=false;
+                      that.$store.state.loginIn=true;
+                      localStorage.loginOut=false;
+                      localStorage.loginIn=true;                     
                       localStorage.userinfo = JSON.stringify(response.data[0]);
                       that.$router.push({ path: 'usercenter' }) 
                     }else{
