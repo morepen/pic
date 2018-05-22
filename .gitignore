@@ -3,6 +3,9 @@ base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/page.css
 base/test/src/assets/css/page/upload.css
 base/test/src/components/list.vue
+<<<<<<< HEAD
+picserver/src/web/Auth/keycheck.html
+=======
 base/test/src/router/index.js
 base/test/src/App.vue
 base/test/src/assets/css/page/body.css
@@ -13,3 +16,12 @@ base/test/src/assets/css/page/edit.css
 base/test/src/assets/css/page/footer.css
 base/test/src/assets/css/page/head_phone.css
 base/test/src/assets/css/page/header.css
+>>>>>>> b40e93ceff9920a43eb8549b01cdbed2b52b10b2
+base/test/node_modules.zip
+base/test/node_modules0511.zip
+base/test/src/App.vue
+base/test/src/assets/css/page/detail.css
+base/test/src/assets/css/page/header.css
+base/test/src/assets/css/page/page.css
+base/test/src/components/header.vue
+base/test/src/components/list.vue
