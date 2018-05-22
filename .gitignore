@@ -25,3 +25,4 @@ base/test/src/assets/css/page/header.css
 base/test/src/assets/css/page/page.css
 base/test/src/components/header.vue
 base/test/src/components/list.vue
+base/test/package-lock.json
