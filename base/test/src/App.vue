@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import io from 'socket.io-client'
   import TopHeader from './components/header.vue'
   import FooterNav from './components/footer.vue'
   export default{
@@ -18,6 +19,20 @@
     data(){
       return{
         isNowPage: true
+      }
+    },
+    created() {
+      this.online();
+    },
+    methods: {
+      online:function(){
+      alert(111)
+         this.socket = io.connect("http://116.196.81.196:3000/");
+                    var _this=this;
+                    this.socket.on('news', function (data) {
+                        alert(22222);
+                        alert(data);                   
+                    })
       }
     }
   }

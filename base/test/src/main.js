@@ -15,3 +15,4 @@ new Vue({
   components: { App }
 })
 Vue.prototype.$router=router;
+

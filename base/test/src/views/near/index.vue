@@ -13,7 +13,7 @@
                 citylocation: null,
                 lat: 0,
                 lng: 0,
-                currentCity: "--", // 没有正确得到经纬度时，默认显示杭州吧
+                currentCity: "--",
                 currentCity_detail: ''
             }
         },
@@ -27,7 +27,6 @@
                 this.citylocation = new qq.maps.CityService({
                     complete: function (res) {
                         city.style.display = 'inline';
-                        // 在pc测试时，会有经纬度负数的情况.....我没找原因=。=，直接处理了下
                         if (!res.detail.name) {
                             return;
                         } else {
@@ -63,7 +62,7 @@
             },
             // 使用html5定位时不能获取经纬度的报错信息
             initErro(error) {
-                console.log(error);
+                alert(error);
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
                         alert("用户拒绝对获取地理位置的请求。");

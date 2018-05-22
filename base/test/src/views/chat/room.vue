@@ -1,63 +1,107 @@
-
-
 <template>
-    <div class="room">
-        <div class="sidebar">
-            <card :user="user" :search.sync="search">1</card>
-            <list :user-list="userList" :session="session" :session-index.sync="sessionIndex" :search="search"></list>
-        </div>
-        <div class="main">
-            <message :session="session" :user="user" :user-list="userList"></message> 
-            <text :session="session">1</text>
-        </div>
+    <div class="chat">
+      <div class="chat_online">
+        <p class="online-text">在线用户列表:</p>
+        <div class="useritem" v-for="(item, index) in userlist">
+           <img class="avatar" :src="attachImageUrl(item.userpic)"  width="55" height="55">
+           <p>{{item.username}}</p>
+        </div> 
+      </diV>
+      <ul class="chat_head">
+             <li>通知</li>
+             <li>聊天</li>
+      </ul>
+      <div class="chat_content">
+         <div class="chat_left"></div>
+         <div class="chat_right">
+             <div class="chat_info">122</div>
+             <div class="chat_handle"></div>
+         </div>
+      </div>
+
     </div>
 </template>
 <script>
+    import io from 'socket.io-client'
     export default {
-        data(){
+        data() {
             return {
-                // 登录用户
-                user: serverData.user,
-                // 用户列表
-                userList: serverData.userList,
-                // 会话列表
-                sessionList: serverData.sessionList,
-                // 搜索key
-                search: '',
-                // 选中的会话Index
-                sessionIndex: 0
-             }
-           }  
+                ws: null,
+                nickName: "123",
+                chatList: [],
+                content: "444",
+                userlist:[]
+            }
+        },
+        created() {
+          if(!this.$store.state.userinfo.id){
+            var _this=this;
+            setTimeout(function(){
+                            const url = 'login';
+                            _this.$router.push({"path":url});
+            },1000)
+          }else{
+             this.getonline();
+          }                        
+        },
+        mounted: function () {
+              
+        },
+        methods: {
+            getonline(){
+                    this.content=555;
+                    this.socket = io.connect("http://localhost:3000/");
+                    var _this=this;
+                    this.socket.on('news', function (data) {
+                         alert(data);
+                   
+                    })
+            },
+            attachImageUrl(srcUrl) {
+              var that=this;              
+              if (srcUrl !== undefined) {
+                 return this.$store.state.userpicUrl+srcUrl;
+               }
+            }    
+        }
     }
 </script>
-<style scoped>
-    #chat {
-        overflow: hidden;
-        border-radius: 3px;
-    }
-        
-        .sidebar, .main {
-            height: 100%;   
-        }
-        .sidebar {
-            float: left;
-            width: 200px;
-            color: #f4f4f4;
-            background-color: #2e3238;
-        }
-        .main {
-            position: relative;
-            overflow: hidden;   
-            background-color: #eee;
-        }
-        .m-text {
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-            left: 0;
-        }
-        .m-message {
-            height: ~'calc(100% - 160px)';
-        }
-   
+<style style scoped>
+  .chat{
+    width: 800px;
+    margin: 0 auto;
+  }
+  .chat_online{
+    margin-top:100px;
+    text-align:left;
+    background:#fff;
+    height:120px;
+  }
+  
+  .useritemDiv{
+     overflow:hidden;
+     background:#fff;
+   }
+  .online-text{
+    line-height:30px;
+    padding-left:10px;
+  }
+  .useritem{
+     float:left;
+     width:60px;
+     margin:10px 5px;
+  }
+  .avatar{
+    border-radius:50%;
+  }
+  .chat_munu li{
+    float:left;
+    width:40px;
+    line-height:36px;
+  }
+  .chat_head{
+    overflow:hidden;
+
+
+  }
 </style>
