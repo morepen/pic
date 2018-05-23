@@ -1,1 +1,0 @@
-# Example socket.io with mysql
